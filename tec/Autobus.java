@@ -1,15 +1,19 @@
 package tec;
 
+import java.util.ArrayList;
+
 public class Autobus implements Transport,Bus {
 
 	JaugeNaturel jaugeAssis;
 	JaugeNaturel jaugeDebout;
 	int arret;
+	ArrayList<Passager> listePass;
 	
 	public Autobus(int i, int j) {
 		this.jaugeAssis = new JaugeNaturel(0,i,0);
 		this.jaugeDebout = new JaugeNaturel(0,j,0);
 		this.arret = 0;
+		this.listePass = new ArrayList<>();
 	}
 
 	@Override
@@ -39,8 +43,9 @@ public class Autobus implements Transport,Bus {
 
 	@Override
 	public void demanderPlaceAssise(Passager p) {
-		if(this.aPlaceAssise() && p.estDebout()) {
+		if(this.aPlaceAssise() && p.estDehors()) {
 			this.jaugeAssis.incrementer();
+			this.listePass.add(p);
 			p.accepterPlaceAssise();
 		}else {
 			this.demanderPlaceDebout(p);
@@ -54,6 +59,7 @@ public class Autobus implements Transport,Bus {
 			this.demanderPlaceAssise(p);
 		}else if(this.aPlaceDebout()) {
 			this.jaugeDebout.incrementer();
+			this.listePass.add(p);
 			p.accepterPlaceDebout();
 		}else {
 			//nothing todo
@@ -64,9 +70,13 @@ public class Autobus implements Transport,Bus {
 	@Override
 	public void demanderChangerEnDebout(Passager p) {
 		if(p.estAssis()) {
-			p.accepterPlaceDebout();
-			this.jaugeAssis.decrementer();
-			this.jaugeDebout.incrementer();
+			if(this.aPlaceDebout()) {
+				this.jaugeAssis.decrementer();
+				this.jaugeDebout.incrementer();
+				p.accepterPlaceDebout();
+
+			}
+
 		}
 
 		
@@ -74,9 +84,13 @@ public class Autobus implements Transport,Bus {
 
 	@Override
 	public void demanderChangerEnAssis(Passager p) {
-		if(p.estDebout()){p.accepterPlaceAssise();
-		this.jaugeAssis.incrementer();
-		this.jaugeDebout.decrementer();
+		if(p.estDebout()){
+			if(this.aPlaceAssise()) {
+				p.accepterPlaceAssise();
+				this.jaugeAssis.incrementer();
+				this.jaugeDebout.decrementer();
+			}
+
 		}
 	}
 
@@ -85,11 +99,13 @@ public class Autobus implements Transport,Bus {
 		if(p.estAssis()) {
 			p.accepterSortie();
 			this.jaugeAssis.decrementer();
+			this.listePass.remove(p);
 		}else if(p.estDebout()){
 			p.accepterSortie();
 			this.jaugeDebout.decrementer();
+			this.listePass.remove(p);
 		}else {
-			//nothing todo passegender not in the bus
+			//nothing todo passenger not in the bus
 		}
 		
 	}
