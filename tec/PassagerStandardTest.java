@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import tec.EtatPassager.Etat;
+
 public class PassagerStandardTest {
 	
 	PassagerStandard passager1;
@@ -65,10 +67,45 @@ public class PassagerStandardTest {
 	}
 
 	@Test
-	public void testMonterDans() {
-		assertTrue(true);
+	public void testMonterDansVide() {
+		Bus busVide = new FauxBusVide();
+		try {
+			passager1.monterDans(busVide);
+			assertFalse(passager1.estDehors());
+		}catch(UsagerInvalideException e) {
+			assertTrue(passager1.estDehors());
+		}
 	}
-
+	@Test
+	public void testMonterDansPlein() {
+		Bus busPlein = new FauxBusPlein();
+		try {
+			passager1.monterDans(busPlein);
+			assertTrue(passager1.estDehors());
+		}catch(UsagerInvalideException e) {
+			assertTrue(passager1.estDehors());
+		}
+	}
+	@Test
+	public void testMonterDansAssis() {
+		Bus busAssis = new FauxBusAssis();
+		try {
+			passager1.monterDans(busAssis);
+			assertTrue(passager1.estAssis());
+		}catch(UsagerInvalideException e) {
+			assertTrue(passager1.estDehors());
+		}
+	}
+	@Test
+	public void testMonterDansDebout() {
+		Bus busDebout = new FauxBusDebout();
+		try {
+			passager1.monterDans(busDebout);
+			assertTrue(passager1.estDebout());
+		}catch(UsagerInvalideException e) {
+			assertTrue(passager1.estDehors());
+		}
+	}
 	@Test
 	public void testEstDehors() {
 		assertTrue(passager1.etat.monEtat == EtatPassager.Etat.DEHORS);
@@ -104,12 +141,18 @@ public class PassagerStandardTest {
 
 	@Test
 	public void testNouvelArret() {
-		assertTrue(true);
+		Bus newBus = new FauxBusVide();
+		passager1.nouvelArret(newBus, 5);
+		assertTrue(passager1.etat.monEtat == Etat.DEHORS);
+		passager3.nouvelArret(newBus, 10);
+		assertTrue(passager3.etat.monEtat == Etat.ASSIS);
 	}
+	
 
 	@Test
 	public void testToString() {
 		assertEquals(passager1.toString(), "psg1 DEHORS");
 	}
-
+	
+	
 }

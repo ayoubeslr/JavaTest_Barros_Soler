@@ -27,11 +27,6 @@ public class PassagerStandard implements Usager, Passager{
 		return this.nom;
 	}
 
-	@Override
-	public void monterDans(Transport t) throws UsagerInvalideException {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public boolean estDehors() {
@@ -69,7 +64,11 @@ public class PassagerStandard implements Usager, Passager{
 
 	@Override
 	public void nouvelArret(Bus bus, int numeroArret) {
-		
+		if(this.destination == numeroArret) {
+			bus.demanderSortie(this);
+		}else if(this.estDebout()) {
+			bus.demanderPlaceAssise(this);
+		}
 		
 	}
 	
@@ -77,5 +76,15 @@ public class PassagerStandard implements Usager, Passager{
 	  public String toString() {
 	    return this.nom + " " + this.etat.monEtat;
 	  }
+
+	@Override
+	public void monterDans(Bus b) throws UsagerInvalideException {
+		if(b.aPlaceAssise()) {
+			b.demanderPlaceAssise(this);
+		}else if(b.aPlaceDebout()) {
+			b.demanderPlaceDebout(this);
+		}
+		
+	}
 
 }
