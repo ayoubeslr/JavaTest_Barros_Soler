@@ -1,15 +1,30 @@
 package tec;
 
+import tec.EtatPassager.Etat;
+
 public class PassagerStandard implements Usager, Passager{
-
-	public PassagerStandard(String string, int i) {
-		// TODO Auto-generated constructor stub
+	private String nom;
+	private int destination;
+	protected EtatPassager etat;
+	
+	public PassagerStandard(String nom, int destination) {
+		this.nom = nom;
+		this.destination = destination;
+		this.etat = new EtatPassager(EtatPassager.Etat.DEHORS);
 	}
+	//getteurs
 
+	public int getDest() {return this.destination;}
+	//Setteurs
+	
+	public String setNom(String newNom) {return this.nom = newNom;}
+	public int setDest(int newDest) {return this.destination = newDest;}
+
+	
 	@Override
 	public String nom() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.nom;
 	}
 
 	@Override
@@ -20,44 +35,47 @@ public class PassagerStandard implements Usager, Passager{
 
 	@Override
 	public boolean estDehors() {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.etat.estExterieur()); 
 	}
 
 	@Override
 	public boolean estAssis() {
-		// TODO Auto-generated method stub
-		return false;
+		return (this.etat.estAssis());
 	}
 
 	@Override
 	public boolean estDebout() {
 		// TODO Auto-generated method stub
-		return false;
+		return (this.etat.estDebout());
 	}
 
 	@Override
 	public void accepterSortie() {
-		// TODO Auto-generated method stub
+		this.etat.monEtat = EtatPassager.Etat.DEHORS;
 		
 	}
 
 	@Override
 	public void accepterPlaceAssise() {
-		// TODO Auto-generated method stub
+		this.etat.monEtat = EtatPassager.Etat.ASSIS;
 		
 	}
 
 	@Override
 	public void accepterPlaceDebout() {
-		// TODO Auto-generated method stub
+		this.etat.monEtat = EtatPassager.Etat.DEBOUT;
 		
 	}
 
 	@Override
 	public void nouvelArret(Bus bus, int numeroArret) {
-		// TODO Auto-generated method stub
+		
 		
 	}
+	
+	@Override
+	  public String toString() {
+	    return this.nom + " " + this.etat.monEtat;
+	  }
 
 }

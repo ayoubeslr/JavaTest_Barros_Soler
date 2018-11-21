@@ -22,5 +22,6 @@ public interface Usager {
    * @throws si l'état de l'usager est incohérent par rapport à sa demande.
    */
   public void monterDans(Transport t) throws UsagerInvalideException;
+ 
 }
 

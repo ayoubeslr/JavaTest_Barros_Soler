@@ -14,7 +14,7 @@ public class EtatPassager implements IEtatPassager{
                     /** passager debout à l'intérieur */ DEBOUT,  
                     /** passager à l'extérieur */        DEHORS};
 
-  private final Etat monEtat;
+  protected Etat monEtat;
 
   /**
    * Construit une instance en précisant l'état du passager.

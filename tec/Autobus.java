@@ -1,5 +1,5 @@
 package tec;
 
-class Autobus {
+public class Autobus {
 
 }
