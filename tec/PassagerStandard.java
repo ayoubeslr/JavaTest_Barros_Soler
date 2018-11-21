@@ -67,7 +67,7 @@ public class PassagerStandard implements Usager, Passager{
 		if(this.destination == numeroArret) {
 			bus.demanderSortie(this);
 		}else if(this.estDebout()) {
-			bus.demanderPlaceAssise(this);
+			bus.demanderChangerEnAssis(this);
 		}
 		
 	}
