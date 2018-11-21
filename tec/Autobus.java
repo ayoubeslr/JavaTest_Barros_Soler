@@ -2,56 +2,101 @@ package tec;
 
 public class Autobus implements Transport,Bus {
 
+	JaugeNaturel jaugeAssis;
+	JaugeNaturel jaugeDebout;
+	int arret;
+	
 	public Autobus(int i, int j) {
-		// TODO Auto-generated constructor stub
+		this.jaugeAssis = new JaugeNaturel(0,i,0);
+		this.jaugeDebout = new JaugeNaturel(0,j,0);
+		this.arret = 0;
 	}
 
 	@Override
 	public void allerArretSuivant() throws UsagerInvalideException {
-		// TODO Auto-generated method stub
+		this.arret+=1;
+		//gestion des sortie passager
 		
 	}
 
 	@Override
 	public boolean aPlaceAssise() {
-		// TODO Auto-generated method stub
-		return false;
+		if(this.jaugeAssis.estBleu() || this.jaugeAssis.estVert()){
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override
 	public boolean aPlaceDebout() {
-		// TODO Auto-generated method stub
-		return false;
+		if(this.jaugeDebout.estBleu() || this.jaugeDebout.estVert()){
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override
 	public void demanderPlaceAssise(Passager p) {
-		// TODO Auto-generated method stub
+		if(this.aPlaceAssise() && p.estDebout()) {
+			this.jaugeAssis.incrementer();
+			p.accepterPlaceAssise();
+		}else {
+			this.demanderPlaceDebout(p);
+		}
 		
 	}
 
 	@Override
 	public void demanderPlaceDebout(Passager p) {
-		// TODO Auto-generated method stub
+		if(this.aPlaceAssise()) {
+			this.demanderPlaceAssise(p);
+		}else if(this.aPlaceDebout()) {
+			this.jaugeDebout.incrementer();
+			p.accepterPlaceDebout();
+		}else {
+			//nothing todo
+		}
 		
 	}
 
 	@Override
 	public void demanderChangerEnDebout(Passager p) {
-		// TODO Auto-generated method stub
+		if(p.estAssis()) {
+			p.accepterPlaceDebout();
+			this.jaugeAssis.decrementer();
+			this.jaugeDebout.incrementer();
+		}
+
 		
 	}
 
 	@Override
 	public void demanderChangerEnAssis(Passager p) {
-		// TODO Auto-generated method stub
-		
+		if(p.estDebout()){p.accepterPlaceAssise();
+		this.jaugeAssis.incrementer();
+		this.jaugeDebout.decrementer();
+		}
 	}
 
 	@Override
 	public void demanderSortie(Passager p) {
-		// TODO Auto-generated method stub
+		if(p.estAssis()) {
+			p.accepterSortie();
+			this.jaugeAssis.decrementer();
+		}else if(p.estDebout()){
+			p.accepterSortie();
+			this.jaugeDebout.decrementer();
+		}else {
+			//nothing todo passegender not in the bus
+		}
 		
+	}
+
+	@Override
+	public String toString() {
+		return "[arret:"+this.arret+", assis:"+(int)this.jaugeAssis.getValeur()+", debout:"+(int)this.jaugeDebout.getValeur()+"]";
 	}
 
 }
