@@ -1,6 +1,7 @@
 package tec;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Autobus implements Transport,Bus {
 
@@ -19,7 +20,11 @@ public class Autobus implements Transport,Bus {
 	@Override
 	public void allerArretSuivant() throws UsagerInvalideException {
 		this.arret+=1;
-		//gestion des sortie passager
+		ArrayList<Passager> copyListePass = new ArrayList<>(listePass);
+
+		for(Passager pass : copyListePass) {
+			pass.nouvelArret(this, this.arret);
+		}
 		
 	}
 

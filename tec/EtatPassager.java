@@ -1,25 +1,25 @@
 package tec;
 /**
- * Cette classe représente l'état d'un passager dans un transport.
- * Il y a un état à l'exterieur du transport (dehors) et deux états à 
- * l'intérieur (assis, debout).
+ * Cette classe reprÃ©sente l'Ã©tat d'un passager dans un transport.
+ * Il y a un Ã©tat Ã  l'exterieur du transport (dehors) et deux Ã©tats Ã  
+ * l'intÃ©rieur (assis, debout).
  *  
  * Les instances de cette classe sont des objets constants.
  **/
 public class EtatPassager implements IEtatPassager{
   /**
-   * Définit les trois états possible d'un passager dans un transport.
+   * DÃ©finit les trois Ã©tats possible d'un passager dans un transport.
    */
-  public enum Etat {/** passager assis à l'intérieur */  ASSIS, 
-                    /** passager debout à l'intérieur */ DEBOUT,  
-                    /** passager à l'extérieur */        DEHORS};
+  public enum Etat {/** passager assis Ã  l'intÃ©rieur */  ASSIS, 
+                    /** passager debout Ã  l'intÃ©rieur */ DEBOUT,  
+                    /** passager Ã  l'extÃ©rieur */        DEHORS};
 
-  private final Etat monEtat;
+  protected Etat monEtat;
 
   /**
-   * Construit une instance en précisant l'état du passager.
+   * Construit une instance en prÃ©cisant l'Ã©tat du passager.
    * 
-   * @param e  valeur de l'état.
+   * @param e  valeur de l'Ã©tat.
    */
   public EtatPassager(Etat e) {
     monEtat = e;
@@ -31,7 +31,7 @@ public class EtatPassager implements IEtatPassager{
 
 
   /**
-   * Le passager est-il à l'extérieur du transport ?
+   * Le passager est-il Ã  l'extÃ©rieur du transport ?
    *
    * @return vrai si instanciation avec DEHORS;
    */
@@ -40,7 +40,7 @@ public class EtatPassager implements IEtatPassager{
   }
 
   /**
-   * Le passager est-il assis à l'intérieur du transport ?
+   * Le passager est-il assis Ã  l'intÃ©rieur du transport ?
    *
    * @return vrai si instanciation avec ASSIS;
    */
@@ -49,7 +49,7 @@ public class EtatPassager implements IEtatPassager{
   }
 
   /**
-   * Le passager est-il debout à l'intérieur du transport ?
+   * Le passager est-il debout Ã  l'intÃ©rieur du transport ?
    *
    * @return vrai si instanciation avec DEBOUT;
    */
@@ -58,7 +58,7 @@ public class EtatPassager implements IEtatPassager{
   }
 
   /**
-   * Le passager est-il a l'intérieur du transport ?
+   * Le passager est-il a l'intÃ©rieur du transport ?
    *
    * @return vrai si instanciation avec ASSIS ou DEBOUT.
    */
@@ -69,14 +69,14 @@ public class EtatPassager implements IEtatPassager{
 
 
   /**
-   * Cette méthode est heritée de la classe {@link java.lang.Object}.
-   * Trés utile pour le débogage, elle permet de fournir une 
-   * chaîne de caractères correspondant à l'état d'un objet.
-   * <p> Un code par défaut est définit dans 
+   * Cette mÃ©thode est heritÃ©e de la classe {@link java.lang.Object}.
+   * TrÃ©s utile pour le dÃ©bogage, elle permet de fournir une 
+   * chaÃ®ne de caractÃ¨res correspondant Ã  l'Ã©tat d'un objet.
+   * <p> Un code par dÃ©faut est dÃ©finit dans 
    * {@link java.lang.Object#toString() la classe Object} 
-   * Il faut adapter (redéfinir) le code de cette méthode à chaque classe.
+   * Il faut adapter (redÃ©finir) le code de cette mÃ©thode Ã  chaque classe.
    *
-   * Pour les chaînes de cararctéres, l'opérateur + correspond a la concaténation. 
+   * Pour les chaÃ®nes de cararctÃ©res, l'opÃ©rateur + correspond a la concatÃ©nation. 
    */
   @Override
   public String toString() {

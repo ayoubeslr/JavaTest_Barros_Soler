@@ -6,4 +6,5 @@ public interface IEtatPassager {
 	public boolean estAssis();
 	public boolean estDebout();
 	public boolean estInterieur();
+	
 }

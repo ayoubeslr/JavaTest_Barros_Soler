@@ -8,7 +8,7 @@ import org.junit.Test;
 
 /**
  * Classe de test.
- * Teste les méthodes de la classe EtatPassager.
+ * Teste les mÃ©thodes de la classe EtatPassager.
  *
  */
 
@@ -21,7 +21,7 @@ public class EtatPassagerTest {
 	EtatPassager eDebout;
 	EtatPassager eDehors;
 
-	/** Instantiation de 3 états : Assis, Debout, Dehors.
+	/** Instantiation de 3 Ã©tats : Assis, Debout, Dehors.
 	 * 
 	 * 
 	 * */
@@ -35,7 +35,7 @@ public class EtatPassagerTest {
 		eDehors = new EtatPassager(dehors);
 	}
 
-	/** Destruction des 3 états : Assi, Debout , Dehors.
+	/** Destruction des 3 Ã©tats : Assi, Debout , Dehors.
 	 * */
 	@After
 	public void tearDown() throws Exception {
@@ -66,7 +66,7 @@ public class EtatPassagerTest {
 	}
 
 	/**Methode de Test
-	 * Test si l'état a pour valeur "Assis".
+	 * Test si l'Ã©tat a pour valeur "Assis".
 	 */
 	@Test
 	public void testEstAssis() {
@@ -76,7 +76,7 @@ public class EtatPassagerTest {
 	}
 
 	/**Methode de Test
-	 * Test si l'état a pour valeur "Debout".
+	 * Test si l'Ã©tat a pour valeur "Debout".
 	 */
 	@Test
 	public void testEstDebout() {
@@ -86,7 +86,7 @@ public class EtatPassagerTest {
 	}
 
 	/**Methode de Test
-	 * Test si le passager est à l'intérieur du transport.
+	 * Test si le passager est Ã  l'intÃ©rieur du transport.
 	 */
 	@Test
 	public void testEstInterieur() {
@@ -96,7 +96,7 @@ public class EtatPassagerTest {
 	}
 
 	/**Methode de Test
-	 * Test la conversion d'un passager en chaine de caractère.
+	 * Test la conversion d'un passager en chaine de caractÃ¨re.
 	 */
 	@Test
 	public void testToString() {
