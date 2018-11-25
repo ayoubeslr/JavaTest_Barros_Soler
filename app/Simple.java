@@ -14,6 +14,7 @@ import tec.UsagerInvalideException;
 
 import tec.PassagerStandard;
 import tec.Autobus;
+import tec.Bus;
 
 /*
  * Exemple de programme principale avec trois PassagerStandard et un Autobus.
@@ -33,7 +34,7 @@ class Simple {
   }
 
   static public void main (String[] args) throws UsagerInvalideException {
-    Transport serenity = new Autobus(1, 2);
+    Bus serenity = new Autobus(1, 2);
 
     Usager kaylee = new PassagerStandard("Kaylee", 5);
 

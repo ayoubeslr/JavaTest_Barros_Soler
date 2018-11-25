@@ -140,7 +140,7 @@ public class PassagerStandardTest {
 	}
 
 	@Test
-	public void testNouvelArret() {
+	public void testNouvelArret() throws UsagerInvalideException {
 		Bus newBus = new FauxBusVide();
 		passager1.nouvelArret(newBus, 5);
 		assertTrue(passager1.etat.monEtat == Etat.DEHORS);

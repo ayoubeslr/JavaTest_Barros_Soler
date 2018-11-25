@@ -1,7 +1,6 @@
 package tec;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Autobus implements Transport,Bus {
 
@@ -11,21 +10,33 @@ public class Autobus implements Transport,Bus {
 	ArrayList<Passager> listePass;
 	
 	public Autobus(int i, int j) {
+		if(i<0 || j<0) {
+			throw new IllegalArgumentException("Veuillez rentrer des places supérieurs ou egale à 0");
+		}
 		this.jaugeAssis = new JaugeNaturel(0,i,0);
 		this.jaugeDebout = new JaugeNaturel(0,j,0);
 		this.arret = 0;
 		this.listePass = new ArrayList<>();
 	}
+	
+	public Autobus(int nbPlace) {
+		this(nbPlace, nbPlace);
+	}
 
 	@Override
 	public void allerArretSuivant() throws UsagerInvalideException {
-		this.arret+=1;
+		try{
+			this.arret+=1;
+		
 		ArrayList<Passager> copyListePass = new ArrayList<>(listePass);
 
 		for(Passager pass : copyListePass) {
 			pass.nouvelArret(this, this.arret);
 		}
-		
+		}catch (Exception e) {
+			// TODO Auto-generated catch block
+			throw new UsagerInvalideException(e.toString());
+		}
 	}
 
 	@Override
@@ -47,19 +58,28 @@ public class Autobus implements Transport,Bus {
 	}
 
 	@Override
-	public void demanderPlaceAssise(Passager p) {
-		if(this.aPlaceAssise() && p.estDehors()) {
-			this.jaugeAssis.incrementer();
-			this.listePass.add(p);
-			p.accepterPlaceAssise();
-		}else {
-			this.demanderPlaceDebout(p);
+	public void demanderPlaceAssise(Passager p) throws IllegalArgumentException {
+		if(this.listePass.contains(p)) {
+				throw new IllegalArgumentException("Le passager est déjà dans le bus");
 		}
+			
+		
+			if(this.aPlaceAssise() && p.estDehors()) {
+				this.jaugeAssis.incrementer();
+				this.listePass.add(p);
+				p.accepterPlaceAssise();
+			}else {
+				this.demanderPlaceDebout(p);
+			}
 		
 	}
 
 	@Override
-	public void demanderPlaceDebout(Passager p) {
+	public void demanderPlaceDebout(Passager p) throws IllegalArgumentException {
+		if(this.listePass.contains(p)) {
+				throw new IllegalArgumentException("Le passager est déjà dans le bus");
+		}
+		
 		if(this.aPlaceAssise()) {
 			this.demanderPlaceAssise(p);
 		}else if(this.aPlaceDebout()) {
@@ -73,7 +93,10 @@ public class Autobus implements Transport,Bus {
 	}
 
 	@Override
-	public void demanderChangerEnDebout(Passager p) {
+	public void demanderChangerEnDebout(Passager p) throws IllegalStateException {
+		if(!p.estAssis()) {
+			throw new IllegalStateException("Le passager n'est pas assis, il ne peux donc pas demander une place debout");
+		}
 		if(p.estAssis()) {
 			if(this.aPlaceDebout()) {
 				this.jaugeAssis.decrementer();
@@ -88,7 +111,10 @@ public class Autobus implements Transport,Bus {
 	}
 
 	@Override
-	public void demanderChangerEnAssis(Passager p) {
+	public void demanderChangerEnAssis(Passager p) throws IllegalStateException {
+		if(!p.estDebout()) {
+			throw new IllegalStateException("Le passager n'est pas debout, il ne peux donc pas demander une place assise");
+		}
 		if(p.estDebout()){
 			if(this.aPlaceAssise()) {
 				p.accepterPlaceAssise();
@@ -100,7 +126,11 @@ public class Autobus implements Transport,Bus {
 	}
 
 	@Override
-	public void demanderSortie(Passager p) {
+	public void demanderSortie(Passager p) throws IllegalStateException {
+		if(p.estDehors()) {
+				throw new IllegalStateException("Le passager est déjà dehors");
+		}
+	
 		if(p.estAssis()) {
 			p.accepterSortie();
 			this.jaugeAssis.decrementer();

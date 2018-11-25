@@ -63,7 +63,7 @@ public class PassagerStandard implements Usager, Passager{
 	}
 
 	@Override
-	public void nouvelArret(Bus bus, int numeroArret) {
+	public void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException {
 		if(this.destination == numeroArret) {
 			bus.demanderSortie(this);
 		}else if(this.estDebout()) {
@@ -78,13 +78,8 @@ public class PassagerStandard implements Usager, Passager{
 	  }
 
 	@Override
-	public void monterDans(Transport b) throws UsagerInvalideException {
-		if(((Bus) b).aPlaceAssise()) {
-			((Bus) b).demanderPlaceAssise(this);
-		}else if(((Bus) b).aPlaceDebout()) {
-			((Bus) b).demanderPlaceDebout(this);
-		}
-		
+	public void monterDans(Bus b) throws UsagerInvalideException {
+			b.demanderPlaceAssise(this);
 	}
 
 }

@@ -96,7 +96,9 @@ public class AutobusTest {
 	
 	@Test
 	public void testDemanderPlaceAssiseBusVide() {
-		auto.demanderPlaceAssise(passDehors);
+
+			auto.demanderPlaceAssise(passDehors);
+
 		assertEquals(auto.jaugeAssis.getValeur(), 1, 0);
 	}
 	
@@ -105,7 +107,9 @@ public class AutobusTest {
 		//on change le bus en mode non vide
 		auto2.jaugeAssis.incrementer();
 		//on demande la place
-		auto2.demanderPlaceAssise(passDehors);
+		
+			auto2.demanderPlaceAssise(passDehors);
+	
 		assertEquals(auto2.jaugeAssis.getValeur(), 2, 0);
 	}
 	@Test
@@ -114,7 +118,9 @@ public class AutobusTest {
 		auto2.jaugeAssis.incrementer();
 		auto2.jaugeAssis.incrementer();
 		//on demande la place
-		auto2.demanderPlaceAssise(passDehors);
+
+			auto2.demanderPlaceAssise(passDehors);
+	
 		// on test que le bus n'a pas ajouter une place assise impossible
 		assertEquals(auto2.jaugeAssis.getValeur(), 2, 0);
 	}
@@ -124,14 +130,18 @@ public class AutobusTest {
 		auto2.jaugeAssis.incrementer();
 		auto2.jaugeAssis.incrementer();
 		//on demande la place
-		auto2.demanderPlaceAssise(passDehors);
+
+			auto2.demanderPlaceAssise(passDehors);
+	
 		// on test que le bus a ajouter une presonne debout
 		assertEquals(auto2.jaugeDebout.getValeur(), 1, 0);
 	}
 
 	@Test
 	public void testDemanderPlaceDeboutBusVide() {
-		auto.demanderPlaceDebout(passDehors);
+	
+			auto.demanderPlaceDebout(passDehors);
+
 		assertEquals(auto.jaugeDebout.getValeur(), 0, 0);
 		assertEquals(auto.jaugeAssis.getValeur(), 1, 0);
 	}
@@ -142,7 +152,9 @@ public class AutobusTest {
 		auto2.jaugeAssis.incrementer();
 		auto2.jaugeAssis.incrementer();
 		//on demande la place
-		auto2.demanderPlaceDebout(passDehors);
+
+			auto2.demanderPlaceDebout(passDehors);
+
 		// on test que le bus n'a pas ajouter une place assise impossible
 		assertEquals(auto2.jaugeDebout.getValeur(), 1, 0);
 	}
@@ -154,7 +166,9 @@ public class AutobusTest {
 		auto2.jaugeDebout.incrementer();
 		auto2.jaugeDebout.incrementer();
 		//on demande la place
-		auto2.demanderPlaceDebout(passDehors);
+	
+			auto2.demanderPlaceDebout(passDehors);
+
 		// on test que le bus n'a pas ajouter une place assise impossible
 		assertEquals(auto2.jaugeDebout.getValeur(), 2, 0);
 	}
@@ -164,9 +178,13 @@ public class AutobusTest {
 	@Test
 	public void testDemanderChangerEnDebout() {
 		//on remplit le bus
-		auto2.demanderPlaceAssise(passDehors);
+	
+			auto2.demanderPlaceAssise(passDehors);
+	
 		//on demande la place
-		auto2.demanderChangerEnDebout(passAssis);
+	
+			auto2.demanderChangerEnDebout(passAssis);
+
 		// on test que le bus n'a pas ajouter une place assise impossible
 		assertEquals(auto2.jaugeDebout.getValeur(), 1, 0);
 		assertEquals(auto2.jaugeAssis.getValeur(), 0, 0);
@@ -178,7 +196,9 @@ public class AutobusTest {
 		auto2.jaugeDebout.incrementer();
 		auto2.jaugeDebout.incrementer();
 		//on demande la place
-		auto2.demanderChangerEnDebout(passAssis);
+
+			auto2.demanderChangerEnDebout(passAssis);
+
 		// on test que le bus n'a pas ajouter une place assise impossible
 		assertEquals(auto2.jaugeDebout.getValeur(), 2, 0);
 		assertEquals(auto2.jaugeAssis.getValeur(), 1, 0);
@@ -189,7 +209,9 @@ public class AutobusTest {
 		//on remplit le bus
 		auto2.jaugeDebout.incrementer();
 		//on demande la place
-		auto2.demanderChangerEnAssis(passDebout);
+
+			auto2.demanderChangerEnAssis(passDebout);
+
 		
 		// on test que le bus n'a pas ajouter une place assise impossible
 		assertEquals(auto2.jaugeDebout.getValeur(), 0, 0);
@@ -202,7 +224,9 @@ public class AutobusTest {
 		auto2.jaugeAssis.incrementer();
 		auto2.jaugeDebout.incrementer();
 		//on demande la place
-		auto2.demanderChangerEnAssis(passDebout);
+
+			auto2.demanderChangerEnAssis(passDebout);
+
 		// on test que le bus n'a pas ajouter une place assise impossible
 		assertEquals(auto2.jaugeDebout.getValeur(), 1, 0);
 		assertEquals(auto2.jaugeAssis.getValeur(), 2, 0);
