@@ -12,6 +12,10 @@ public class PassagerStandard implements Usager, Passager{
 		this.destination = destination;
 		this.etat = new EtatPassager(EtatPassager.Etat.DEHORS);
 	}
+	
+	public PassagerStandard(int destination) {
+		
+	}
 	//getteurs
 
 	public int getDest() {return this.destination;}

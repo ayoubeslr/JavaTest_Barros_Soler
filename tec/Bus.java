@@ -47,7 +47,6 @@ interface Bus extends Transport{
    */
   public void demanderPlaceDebout(Passager p);
 
-
   /**
    * Change un passager d'une place assise vers une place debout.
    * Elle change l'état du passager.
