@@ -1,7 +1,14 @@
 package tec;
 
 import java.util.ArrayList;
-
+/**
+ * Cette class implémente les methodes de Transport et Bus pour gérer le transport de Passagers
+ * Elle comporte une liste de passagers Assis ou Debout
+ * Un Autobus comporte un nombre de place assise ou debout supérieures à 0
+ * 
+ * @author Barros Lucas
+ *
+ */
 public class Autobus implements Transport,Bus {
 
 	JaugeNaturel jaugeAssis;
@@ -9,6 +16,14 @@ public class Autobus implements Transport,Bus {
 	int arret;
 	ArrayList<Passager> listePass;
 	
+	/**
+	 * Instancie un nouveau Autobus selon 2 parametres.
+	 * Le nombre de places assises puis le nombre de places debouts.
+	 * Instance le numéro de l'arrêt à 0 et la liste des passagers à vide
+	 * 
+	 * @param i
+	 * @param j
+	 */
 	public Autobus(int i, int j) {
 		if(i<0 || j<0) {
 			throw new IllegalArgumentException("Veuillez rentrer des places supérieurs ou egale à 0");
@@ -19,10 +34,21 @@ public class Autobus implements Transport,Bus {
 		this.listePass = new ArrayList<>();
 	}
 	
+	/**
+	 * Instancie un nouveau Autobus selon 1 parametre.
+	 * Ce constructeur fait appel au constructeur avec 2 parametres.
+	 * Ce nouveau Autobus aura le même nombre de places assises et debouts
+	 * @param nbPlace
+	 */
 	public Autobus(int nbPlace) {
 		this(nbPlace, nbPlace);
 	}
 
+	/**
+	 * Méthodes permetant à l'Autobus d'avancer d'un arrêt
+	 * Il fera appel à tous les passagers présent dans sa liste pour leur signaler le nouvel arrêt.
+	 * Si une exception surgit, il l'attrape et renvera une exception de type UsagerInvalideException à la place
+	 */
 	@Override
 	public void allerArretSuivant() throws UsagerInvalideException {
 		try{
@@ -39,6 +65,10 @@ public class Autobus implements Transport,Bus {
 		}
 	}
 
+	/**
+	 * Renvoie un boolean pour savoir si oui ou non il reste des places assises
+	 *
+	 */
 	@Override
 	public boolean aPlaceAssise() {
 		if(this.jaugeAssis.estBleu() || this.jaugeAssis.estVert()){
@@ -48,6 +78,10 @@ public class Autobus implements Transport,Bus {
 		}
 	}
 
+	/**
+	 * Renvoie un boolean pour savoir si oui ou non il reste des places debouts
+	 * 
+	 */
 	@Override
 	public boolean aPlaceDebout() {
 		if(this.jaugeDebout.estBleu() || this.jaugeDebout.estVert()){
@@ -57,6 +91,11 @@ public class Autobus implements Transport,Bus {
 		}
 	}
 
+	/**
+	 * Change l'état d'un passager en assis si il reste des places assises et que le passager est dehors.
+	 * Peut lever une exception si le passager est déjà dans l'Autobus
+	 * Cette méthode est appellé à la monter dans un Autobus
+	 */
 	@Override
 	public void demanderPlaceAssise(Passager p) throws IllegalArgumentException {
 		if(this.listePass.contains(p)) {
@@ -74,6 +113,11 @@ public class Autobus implements Transport,Bus {
 		
 	}
 
+	/**
+	 * Change l'état d'un passager en assis si il reste des places debout et que le passager est dehors.
+	 * Peut lever une exception si le passager est déjà dans l'Autobus
+	 * Cette méthode est appellé à la monter dans un Autobus et qu'il n'y a plus de place assise
+	 */
 	@Override
 	public void demanderPlaceDebout(Passager p) throws IllegalArgumentException {
 		if(this.listePass.contains(p)) {
@@ -92,6 +136,10 @@ public class Autobus implements Transport,Bus {
 		
 	}
 
+	/**
+	 * Change l'état d'un passager en debout si il reste des places assises et que le passager est assis.
+	 * Peut lever une exception si le passager n'est pas assis
+	 */
 	@Override
 	public void demanderChangerEnDebout(Passager p) throws IllegalStateException {
 		if(!p.estAssis()) {
@@ -110,6 +158,10 @@ public class Autobus implements Transport,Bus {
 		
 	}
 
+	/**
+	 * Change l'état d'un passager en assis si il reste des places debout et que le passager est debout.
+	 * Peut lever une exception si le passager n'est pas debout
+	 */
 	@Override
 	public void demanderChangerEnAssis(Passager p) throws IllegalStateException {
 		if(!p.estDebout()) {
@@ -125,6 +177,10 @@ public class Autobus implements Transport,Bus {
 		}
 	}
 
+	/**
+	 * Change l'état d'un passager en dehors si il est dans le bus.
+	 * Peut lever une exception si le passager est déjà dehors
+	 */
 	@Override
 	public void demanderSortie(Passager p) throws IllegalStateException {
 		if(p.estDehors()) {
@@ -145,6 +201,10 @@ public class Autobus implements Transport,Bus {
 		
 	}
 
+	/**
+	 * Override de la méthode toString sur l'objet Autobus
+	 * un resultat du type [arret:0, assis:0, debout:0];
+	 */
 	@Override
 	public String toString() {
 		return "[arret:"+this.arret+", assis:"+(int)this.jaugeAssis.getValeur()+", debout:"+(int)this.jaugeDebout.getValeur()+"]";
