@@ -1,6 +1,7 @@
 package tec;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * Cette interface définit un des types abstraits fixant les interactions
  * avec le bus. 
@@ -22,8 +23,11 @@ package tec;
  * Quand il arrive à son arrét de destination, un passager sort du bus.
  */
 interface Passager {
+  
   /**
    * fournit le nom de l'usager.
+   *
+   * @return the string
    */
   public String nom();
 
@@ -68,7 +72,9 @@ interface Passager {
    *
    * @param bus le bus dans lequel se trouve le passager.
    * @param numeroArret numero de l'arrêt.
+   * @throws UsagerInvalideException the usager invalide exception
    */
-  public void nouvelArret(Bus bus, int numeroArret);
+  public void nouvelArret(Bus bus, int numeroArret) throws UsagerInvalideException;
+
 }
 

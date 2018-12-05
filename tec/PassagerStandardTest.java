@@ -7,93 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import tec.EtatPassager.Etat;
-/**
- * classe de test
- * test les methodes de la classe PassagerStandard*/
-public class PassagerStandardTest {
-	/**
-	 * Declaration de 3 passager : passager1, passager2, passager3
-	 * */
-	
-	PassagerStandard passager1;
-	PassagerStandard passager2;
-	PassagerStandard passager3;
-	
-	/** Instantation de 3 etat : passage1, passager2, passager3
-	 *
-	 */
-	@Before
-	public void setUp() throws Exception {
-		passager1 = new PassagerStandard("psg1", 5);
-		passager2 = new PassagerStandard("psg2", 6);
-		passager2.etat.monEtat = EtatPassager.Etat.ASSIS;
-		passager3 = new PassagerStandard("psg3", 7);
-		passager3.etat.monEtat = EtatPassager.Etat.DEBOUT;
-	}
-	/** Destruction de 3 etat : passage1, passager2, passager3
-	 *
-	 */
-	@After
-	public void tearDown() throws Exception {
-		passager1 = null;
-		passager2 = null;
-		passager3 = null;
-	}
-	/**Methode de Test 
-	 * Test de l'instantiation d'un PassagerStadard
-	 * 
-	 */
-	@Test
-	public void testPassagerStandard() {
-		assertNotNull(passager1);
-		assertNotNull(passager2);
-		assertNotNull(passager3);
-	}
-	/**Methode de Test 
-	 * Test du getteur GetDest
-	 * 
-	 */
-	@Test
-	public void testGetDest() {
-		assertTrue(passager1.getDest() == 5);
-		assertTrue(passager2.getDest() == 6);
-		assertTrue(passager3.getDest() == 7);
-	}
-	/**Methode de Test 
-	 * Test du setteur SetNom
-	 * 
-	 */
-	@Test
-	public void testSetNom() {
-		assertTrue(passager1.setNom("passager1") == "passager1");
-		assertTrue(passager3.setNom("passager3") == "passager3");
-		assertTrue(passager2.setNom("passager2") == "passager2");
-	}
-	/**Methode de Test 
-	 * Test du setteur SetDest
-	 * 
-	 */
-	@Test
-	public void testSetDest() {
-		assertTrue(passager1.setDest(8) == 8);
-		assertTrue(passager2.setDest(9) == 9);
-		assertTrue(passager3.setDest(10) == 10);
-	}
-	/**Methode de Test 
-	 * Test si les passager on le meme nom
-	 * 
-	 */
-	@Test
-	public void testNom() {
-		assertTrue(passager1.nom() == "psg1");
-		assertTrue(passager2.nom() == "psg2");
-		assertTrue(passager3.nom() == "psg3");
-		
-	}
-	/**Methode de Test 
-	 * Test si le passager monte dans un bus vide
-	 * 
-	 */
+
+public class PassagerStandardTest extends PassagerAbstractTest {
 	@Test
 	public void testMonterDansVide() {
 		Bus busVide = new FauxBusVide();
@@ -104,10 +19,6 @@ public class PassagerStandardTest {
 			assertTrue(passager1.estDehors());
 		}
 	}
-	/**Methode de Test 
-	 * Test si le passager monte dans un bus plein
-	 * 
-	 */
 	@Test
 	public void testMonterDansPlein() {
 		Bus busPlein = new FauxBusPlein();
@@ -118,112 +29,26 @@ public class PassagerStandardTest {
 			assertTrue(passager1.estDehors());
 		}
 	}
-	/**Methode de Test 
-	 * Test si le passager monte dans un bus avec des places assis
-	 * 
-	 */
 	@Test
 	public void testMonterDansAssis() {
 		Bus busAssis = new FauxBusAssis();
-		try {
-			passager1.monterDans(busAssis);
+			try {
+				passager1.monterDans(busAssis);
+			} catch (UsagerInvalideException e) {
+				e.printStackTrace();
+			}
 			assertTrue(passager1.estAssis());
-		}catch(UsagerInvalideException e) {
-			assertTrue(passager1.estDehors());
-		}
+
 	}
-	/**Methode de Test 
-	 * Test si le passager monte dans un bus avec des places debout
-	 * 
-	 */
 	@Test
 	public void testMonterDansDebout() {
 		Bus busDebout = new FauxBusDebout();
-		try {
-			passager1.monterDans(busDebout);
+			try {
+				passager1.monterDans(busDebout);
+			} catch (UsagerInvalideException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			assertTrue(passager1.estDebout());
-		}catch(UsagerInvalideException e) {
-			assertTrue(passager1.estDehors());
-		}
 	}
-	/**Methode de Test 
-	 * Test si le passager est dehors
-	 * 
-	 */
-	@Test
-	public void testEstDehors() {
-		assertTrue(passager1.etat.monEtat == EtatPassager.Etat.DEHORS);
-	}
-	
-	/**Methode de Test 
-	 * Test si le passager est assis
-	 * 
-	 */
-	@Test
-	public void testEstAssis() {
-		assertTrue(passager2.etat.monEtat == EtatPassager.Etat.ASSIS);
-	}
-	
-	/**Methode de Test 
-	 * Test si le passager est debout
-	 * 
-	 */
-	@Test
-	public void testEstDebout() {
-		assertTrue(passager3.etat.monEtat == EtatPassager.Etat.DEBOUT);
-	}
-	/**Methode de Test 
-	 * Test si le passager acceote de sortie
-	 * 
-	 */
-	@Test
-	public void testAccepterSortie() {
-		passager2.accepterSortie();
-		assertTrue(passager2.etat.monEtat == EtatPassager.Etat.DEHORS);
-	}
-	
-	/**Methode de Test 
-	 * Test si le passager acceote une place assis
-	 * 
-	 */
-	@Test
-	public void testAccepterPlaceAssise() {
-		passager3.accepterPlaceAssise();
-		assertTrue(passager3.etat.monEtat == EtatPassager.Etat.ASSIS);
-	}
-	
-	/**Methode de Test 
-	 * Test si le passager accepte de sortie
-	 * 
-	 */
-	@Test
-	public void testAccepterPlaceDebout() {
-		passager1.accepterPlaceDebout();
-		assertTrue(passager1.etat.monEtat == EtatPassager.Etat.DEBOUT);
-	}
-	
-	/**Methode de Test 
-	 * Test l'arret de bus du passager
-	 * 
-	 */
-	@Test
-	public void testNouvelArret() {
-		Bus newBus = new FauxBusPlein();
-		passager1.nouvelArret(newBus, 5);
-		assertTrue(passager1.etat.monEtat == Etat.DEHORS);
-		Bus newBus1 = new FauxBusAssis();
-		passager3.nouvelArret(newBus1, 10);
-		assertTrue(passager3.etat.monEtat == Etat.ASSIS);
-	}
-	
-	
-	/**Methode de Test
-	 * Test la conversion d'un passager en chaine de caractère.
-	 */
-	@Test
-	public void testToString() {
-		assertEquals(passager1.toString(), "psg1 DEHORS");
-	}
-	
-	
 }

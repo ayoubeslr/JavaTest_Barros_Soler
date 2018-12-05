@@ -1,5 +1,6 @@
 package tec;
 
+// TODO: Auto-generated Javadoc
 /**
  * Cette interface définit un des types abstraits fixant les interactions
  * avec les passagers. 
@@ -17,7 +18,7 @@ package tec;
  * Si la demande est acceptée, le bus déclenche les modificateurs 
  * de passager.
  */
-interface Bus extends Transport{
+public interface Bus extends Transport{
 
   /**
    * vrai s'il existe des places assises.
@@ -35,39 +36,54 @@ interface Bus extends Transport{
    * Le passager entre dans ce bus en demandant une place assise.
    * L'état du passager est forcément dehors.
    * Cette méthode est appelée par Passager.
+   *
    * @param p le passager
+   * @throws UsagerInvalideException the usager invalide exception
    */
-  public void demanderPlaceAssise(Passager p);
+  public void demanderPlaceAssise(Passager p) throws UsagerInvalideException;
+  
   /**
    * Le passager entre dans ce bus en demandant une place debout.
    * L'état du passager est forcément dehors.
    * Cette méthode est appelée par passager. 
    * Elle change l'état du passager.
+   *
    * @param p le passager
+   * @throws UsagerInvalideException the usager invalide exception
    */
-  public void demanderPlaceDebout(Passager p);
+  public void demanderPlaceDebout(Passager p) throws UsagerInvalideException;
+
 
   /**
    * Change un passager d'une place assise vers une place debout.
    * Elle change l'état du passager.
+   *
    * @param p le passager avec un état assis.
+   * @throws UsagerInvalideException the usager invalide exception
    */
-  public void demanderChangerEnDebout(Passager p);
+  public void demanderChangerEnDebout(Passager p) throws UsagerInvalideException;
 
   /**
    * Change un passager d'une place debout vers une place assise.
    * Elle change l'état du passager.
+   *
    * @param p le passager avec un état debout.
+   * @throws UsagerInvalideException the usager invalide exception
    */
-  public void demanderChangerEnAssis(Passager p);
+  public void demanderChangerEnAssis(Passager p) throws UsagerInvalideException;
 
   /**
    * Fait sortir un passager du bus.
    * Elle change l'état du passager.
+   *
    * @param p le passager avec un état soit assis soit debout.
+   * @throws UsagerInvalideException the usager invalide exception
    */
-  public void demanderSortie(Passager p);
+  public void demanderSortie(Passager p) throws UsagerInvalideException;
   
+  /* (non-Javadoc)
+   * @see tec.Transport#allerArretSuivant()
+   */
   public void allerArretSuivant() throws UsagerInvalideException;
 }
 

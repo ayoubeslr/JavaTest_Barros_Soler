@@ -24,8 +24,8 @@ public class AutobusExceptionTest {
 	/** The Lise le cameleon. */
 	PassagerStandard LiseLeCameleon;
 	
-	/** The Mademoiselle valérie billeen tête. */
-	PassagerStandard MademoiselleValérieBilleenTête; 
+	/** The Mademoiselle valerie billeen tete. */
+	PassagerStandard MademoiselleValerieBilleenTete; 
 	
 	/** The haziz. */
 	PassagerStandard haziz; 
@@ -37,8 +37,8 @@ public class AutobusExceptionTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		MademoiselleValérieBilleenTête = new PassagerStandard("Mademoiselle Valérie Bille-en-Tête",5);
-		LiseLeCameleon = new PassagerStandard("Lise Le Caméléon",3);
+		MademoiselleValerieBilleenTete = new PassagerStandard("Mademoiselle Valerie Bille-en-Tete",5);
+		LiseLeCameleon = new PassagerStandard("Lise Le Cameleon",3);
 		haziz = new PassagerStandard("Haziz",6);
 		leBusMagique = new Autobus(5,5);
 		leBusMagiqueSansPlaces = new Autobus(1,1);
@@ -52,7 +52,7 @@ public class AutobusExceptionTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-		MademoiselleValérieBilleenTête = null;
+		MademoiselleValerieBilleenTete = null;
 		LiseLeCameleon = null;
 		haziz = null;
 		leBusMagique = null;
@@ -93,9 +93,9 @@ public class AutobusExceptionTest {
 	@Test (expected = IllegalArgumentException.class) 
 	public void testDemanderPlaceAssise() throws IllegalArgumentException {
 		//on fait monter Michel
-		leBusMagique.demanderPlaceAssise(MademoiselleValérieBilleenTête);
+		leBusMagique.demanderPlaceAssise(MademoiselleValerieBilleenTete);
 		//Michel est deja dans le bus donc pas dehors donc exception
-		leBusMagique.demanderPlaceAssise(MademoiselleValérieBilleenTête);
+		leBusMagique.demanderPlaceAssise(MademoiselleValerieBilleenTete);
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class AutobusExceptionTest {
 	@Test (expected = IllegalArgumentException.class)
 	public void testDemanderPlaceDebout() throws IllegalArgumentException {
 		//on fait monter Michel
-		leBusMagique.demanderPlaceAssise(MademoiselleValérieBilleenTête);
+		leBusMagique.demanderPlaceAssise(MademoiselleValerieBilleenTete);
 		//on fait monter Haziz, il est debout car il y a pas de place assise
 		leBusMagiqueSansPlaces.demanderPlaceDebout(haziz);
 		//Haziz est deja dans le bus donc pas dehors donc exception
@@ -132,10 +132,10 @@ public class AutobusExceptionTest {
 	@Test (expected = IllegalStateException.class)
 	public void testDemanderChangerEnDeboutMaisDeboutDeja() throws IllegalStateException {
 		//on fait monter Michel
-		leBusMagiqueSansPlaces.demanderPlaceAssise(MademoiselleValérieBilleenTête);
+		leBusMagiqueSansPlaces.demanderPlaceAssise(MademoiselleValerieBilleenTete);
 		//on fait monter Haziz, il est debout car il y a pas de place assise
 		leBusMagiqueSansPlaces.demanderPlaceAssise(haziz);
-		//on change Haziz en debout mais il est déjà debout
+		//on change Haziz en debout mais il est deje debout
 		leBusMagiqueSansPlaces.demanderChangerEnDebout(haziz);
 	}
 
@@ -158,8 +158,8 @@ public class AutobusExceptionTest {
 	@Test (expected = IllegalStateException.class)
 	public void testDemanderChangerEnAssisMaisDeboutDeja() throws IllegalStateException {
 		//on fait monter Michel
-		leBusMagique.demanderPlaceAssise(MademoiselleValérieBilleenTête);
-		//on change Michel en assis mais il est déjà assis
+		leBusMagique.demanderPlaceAssise(MademoiselleValerieBilleenTete);
+		//on change Michel en assis mais il est deje assis
 		leBusMagique.demanderChangerEnAssis(haziz);
 	}
 

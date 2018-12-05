@@ -1,4 +1,5 @@
 package tec;
+// TODO: Auto-generated Javadoc
 /**
  * Cette classe représente l'état d'un passager dans un transport.
  * Il y a un état à l'exterieur du transport (dehors) et deux états à 
@@ -10,10 +11,14 @@ public class EtatPassager implements IEtatPassager{
   /**
    * Définit les trois états possible d'un passager dans un transport.
    */
-  public enum Etat {/** passager assis à l'intérieur */  ASSIS, 
-                    /** passager debout à l'intérieur */ DEBOUT,  
-                    /** passager à l'extérieur */        DEHORS};
+  public enum Etat {
+/**  passager assis à l'intérieur. */  ASSIS, 
+                    
+                    /**  passager debout à l'intérieur. */ DEBOUT,  
+                    
+                    /**  passager à l'extérieur. */        DEHORS};
 
+  /** The mon etat. */
   protected Etat monEtat;
 
   /**
@@ -31,7 +36,7 @@ public class EtatPassager implements IEtatPassager{
 
 
   /**
-   * Le passager est-il à l'extérieur du transport ?
+   * Le passager est-il à l'extérieur du transport ?.
    *
    * @return vrai si instanciation avec DEHORS;
    */
@@ -40,7 +45,7 @@ public class EtatPassager implements IEtatPassager{
   }
 
   /**
-   * Le passager est-il assis à l'intérieur du transport ?
+   * Le passager est-il assis à l'intérieur du transport ?.
    *
    * @return vrai si instanciation avec ASSIS;
    */
@@ -49,7 +54,7 @@ public class EtatPassager implements IEtatPassager{
   }
 
   /**
-   * Le passager est-il debout à l'intérieur du transport ?
+   * Le passager est-il debout à l'intérieur du transport ?.
    *
    * @return vrai si instanciation avec DEBOUT;
    */
@@ -58,7 +63,7 @@ public class EtatPassager implements IEtatPassager{
   }
 
   /**
-   * Le passager est-il a l'intérieur du transport ?
+   * Le passager est-il a l'intérieur du transport ?.
    *
    * @return vrai si instanciation avec ASSIS ou DEBOUT.
    */
@@ -75,8 +80,10 @@ public class EtatPassager implements IEtatPassager{
    * <p> Un code par défaut est définit dans 
    * {@link java.lang.Object#toString() la classe Object} 
    * Il faut adapter (redéfinir) le code de cette méthode à chaque classe.
+   * 
+   * Pour les chaînes de cararctéres, l'opérateur + correspond a la concaténation.
    *
-   * Pour les chaînes de cararctéres, l'opérateur + correspond a la concaténation. 
+   * @return the string
    */
   @Override
   public String toString() {

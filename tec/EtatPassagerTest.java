@@ -6,6 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
 /**
  * Classe de test.
  * Teste les méthodes de la classe EtatPassager.
@@ -18,13 +19,18 @@ public class EtatPassagerTest {
 	 * 
 	 */
 	EtatPassager eAssis;
+	
+	/** The e debout. */
 	EtatPassager eDebout;
+	
+	/** The e dehors. */
 	EtatPassager eDehors;
 
-	/** Instantiation de 3 états : Assis, Debout, Dehors.
-	 * 
-	 * 
-	 * */
+	/**
+	 *  Instantiation de 3 états : Assis, Debout, Dehors.
+	 *
+	 * @throws Exception the exception
+	 */
 	@Before
 	public void setUp() throws Exception {
 		EtatPassager.Etat assis = EtatPassager.Etat.ASSIS;
@@ -35,8 +41,11 @@ public class EtatPassagerTest {
 		eDehors = new EtatPassager(dehors);
 	}
 
-	/** Destruction des 3 états : Assi, Debout , Dehors.
-	 * */
+	/**
+	 *  Destruction des 3 états : Assi, Debout , Dehors.
+	 *
+	 * @throws Exception the exception
+	 */
 	@After
 	public void tearDown() throws Exception {
 		eAssis = null;

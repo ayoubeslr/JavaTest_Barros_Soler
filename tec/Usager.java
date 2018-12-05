@@ -1,5 +1,6 @@
 package tec;
 
+// TODO: Auto-generated Javadoc
 /**
  * Cette interface définit le type manipulé par le programme principal.
  * <p> 
@@ -9,19 +10,22 @@ package tec;
  * refuse toute demande, le passager reste dehors.
  */
 public interface Usager {
+  
   /**
    * fournit le nom de l'usager.
+   *
+   * @return the string
    */
   public String nom();
 
   /**
    * Fournit à l'usager le transport auquel il peut accéder.
    * Cette méthode réalise le caractère du passager à la montée.
-   * 
-   * @param t le transport dans lequel désire monter l'usager.
-   * @throws si l'état de l'usager est incohérent par rapport à sa demande.
+   *
+   * @param serenity the serenity
+   * @throws UsagerInvalideException the usager invalide exception
    */
-  public void monterDans(Bus b) throws UsagerInvalideException;
+  public void monterDans(Bus serenity) throws UsagerInvalideException;
  
 }
 
