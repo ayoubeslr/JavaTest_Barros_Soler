@@ -2,7 +2,7 @@ package tec;
 
 public class PassagerStresse extends PassagerAbstract {
 
-	public PassagerStresse(int destination) {
+	public PassagerStresse(String nom , int destination) {
 		super(destination);
 	}
 	/*
