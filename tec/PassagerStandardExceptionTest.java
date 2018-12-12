@@ -19,7 +19,7 @@ public class PassagerStandardExceptionTest {
 	PassagerStandard Mowgli;
 	
 	/** The le bus magique le retour. */
-	//on instancie des autobus et non pas des faux autobus car on sait qu'il est fonctionnel après la mise en commun
+	//on instancie des autobus et non pas des faux autobus car on sait qu'il est fonctionnel aprï¿½s la mise en commun
 	Autobus leBusMagiqueLeRetour;
 	
 	/** The le bus de sportif. */
@@ -70,46 +70,12 @@ public class PassagerStandardExceptionTest {
 	}
 	
 	/**
-	 * Testaccepter sortie.
-	 *
-	 * @throws IllegalStateException the illegal state exception
-	 */
-	@Test (expected=IllegalStateException.class)
-	public void testaccepterSortie() throws IllegalStateException{
-		Mowgli.accepterSortie();
-	}
-	
-	/**
-	 * Testaccepter place assise.
-	 *
-	 * @throws IllegalStateException the illegal state exception
-	 */
-	@Test (expected=IllegalStateException.class)
-	public void testaccepterPlaceAssise() throws IllegalStateException{
-		//Mowgli est assis
-		leBusMagiqueLeRetour.demanderPlaceAssise(Mowgli);
-		Mowgli.accepterPlaceAssise();
-	}
-	
-	/**
-	 * Testaccepter place debout.
-	 *
-	 * @throws IllegalStateException the illegal state exception
-	 */
-	@Test (expected=IllegalStateException.class)
-	public void testaccepterPlaceDebout() throws IllegalStateException{
-		//Mowgli est debout
-		leBusDeSportif.demanderPlaceDebout(Mowgli);
-		Mowgli.accepterPlaceDebout();
-	}
-	
-	/**
 	 * Test nouvel arret.
 	 *
 	 * @throws UsagerInvalideException the usager invalide exception
 	 */
 	@Test (expected=UsagerInvalideException.class)
-	public void testNouvelArret() throws UsagerInvalideException{
+	public void testChoixCangerPlace() throws UsagerInvalideException{
 		//Mowgli est assis son arret est le 2
 		leBusMagiqueLeRetour.demanderPlaceAssise(Mowgli);
 		Mowgli.nouvelArret(leBusMagiqueLeRetour,5);
@@ -121,7 +87,7 @@ public class PassagerStandardExceptionTest {
 	 * @throws UsagerInvalideException the usager invalide exception
 	 */
 	@Test (expected=UsagerInvalideException.class)
-	public void testNouvelArretDehors() throws UsagerInvalideException{
+	public void testchoixPlaceMonteeDehors() throws UsagerInvalideException{
 		//Mowgli est dehors
 		Mowgli.nouvelArret(leBusMagiqueLeRetour,5);
 	}

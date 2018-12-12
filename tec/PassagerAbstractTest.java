@@ -8,22 +8,22 @@ import org.junit.Test;
 
 import tec.EtatPassager.Etat;
 
-public class PassagerAbstractTest {
+public abstract class PassagerAbstractTest {
 	
-	PassagerStandard passager1;
-	PassagerStandard passager2;
-	PassagerStandard passager3;
-	PassagerStandard passager4;
+	PassagerAbstract passager1;
+	PassagerAbstract passager2;
+	PassagerAbstract passager3;
+	PassagerAbstract passager4;
 	
 	
 	@Before
 	public void setUp() throws Exception {
-		passager1 = new PassagerStandard("psg1", 5);
-		passager2 = new PassagerStandard("psg2", 6);
+		passager1 = creerPassager("psg1", 5);
+		passager2 = creerPassager("psg2", 6);
 		passager2.etat.monEtat = EtatPassager.Etat.ASSIS;
-		passager3 = new PassagerStandard("psg3", 7);
+		passager3 = creerPassager("psg3", 7);
 		passager3.etat.monEtat = EtatPassager.Etat.DEBOUT;
-		passager4 = new PassagerStandard(7);
+		//passager4 = creerPassager(7);
 	}
 
 	@After
@@ -104,10 +104,12 @@ public class PassagerAbstractTest {
 		assertEquals(passager1.toString(), "psg1 DEHORS");
 	}
 	
-	@Test
-	public void testToStringConstructor2() {
-		assertEquals(passager4.toString(), "PassagerStandard7 DEHORS");
-	}
+//	@Test
+//	public void testToStringConstructor2() {
+//		assertEquals(passager4.toString(), "PassagerStandard7 DEHORS");
+//	}
+//	
+	abstract protected PassagerAbstract creerPassager(String nom, int destination);
 	
 	
 }

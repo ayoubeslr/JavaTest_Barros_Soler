@@ -62,5 +62,6 @@ public class PassagerStandard extends PassagerAbstract{
 				b.demanderPlaceDebout(this);
 			}
 	}
+	
 
 }
